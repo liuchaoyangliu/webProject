@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
+
+	<bean id="boss" class="com.zut.lcy.entity.Boss">
+		<property name="name" value="马老板"/>
+		<property name="company" value="阿里巴巴"/>
+		<property name="car" ref="car"/>
+		<property name="hobby" value="抢钱，吹牛，鸡汤"/>
+	</bean>
+
+	<bean id="car" class="com.zut.lcy.entity.Car">
+		<property name="brand" value="大众"/>
+		<property name="colour" value="红色"/>
+		<property name="displacement" value="3.0"/>
+	</bean>
+
+	<bean id="conference" class="com.zut.lcy.entity.Conference">
+		<property name="theme" value="马老板的抢钱计划"/>
+		<property name="lists">
+			<list>
+            	<ref bean="boss"/>
+            	<ref bean="boss"/>
+        	</list>
+		</property>
+	</bean>
+
+	<bean id="conferenceService" 
+		class="com.zut.lcy.server.impl.ConferenceServiceImpl">
+		<property name="conference" ref="conference"></property>
+	</bean>
+		
+</beans>
