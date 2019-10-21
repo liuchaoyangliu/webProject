@@ -30,7 +30,9 @@ public class ConferenceServiceImpl implements ConferenceService{
 
 	@Override
 	public void conference() {
-
+		//用于异常通知测试
+//		int s = 1 / 0;
+		
 		System.out.println("会议主题：" + conference.getTheme());
 		
 		List<Boss> list = conference.getLists();

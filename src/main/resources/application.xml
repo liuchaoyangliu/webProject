@@ -11,31 +11,67 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
 
 	<bean id="boss" class="com.zut.lcy.entity.Boss">
-		<property name="name" value="马老板"/>
-		<property name="company" value="阿里巴巴"/>
-		<property name="car" ref="car"/>
-		<property name="hobby" value="抢钱，吹牛，鸡汤"/>
+		<property name="name" value="马老板" />
+		<property name="company" value="阿里巴巴" />
+		<property name="car" ref="car" />
+		<property name="hobby" value="抢钱，吹牛，鸡汤" />
 	</bean>
 
 	<bean id="car" class="com.zut.lcy.entity.Car">
-		<property name="brand" value="大众"/>
-		<property name="colour" value="红色"/>
-		<property name="displacement" value="3.0"/>
+		<property name="brand" value="大众" />
+		<property name="colour" value="红色" />
+		<property name="displacement" value="3.0" />
 	</bean>
 
 	<bean id="conference" class="com.zut.lcy.entity.Conference">
-		<property name="theme" value="马老板的抢钱计划"/>
+		<property name="theme" value="马老板的抢钱计划" />
 		<property name="lists">
 			<list>
-            	<ref bean="boss"/>
-            	<ref bean="boss"/>
-        	</list>
+				<ref bean="boss" />
+				<ref bean="boss" />
+			</list>
 		</property>
 	</bean>
 
-	<bean id="conferenceService" 
+	<bean id="conferenceService"
 		class="com.zut.lcy.server.impl.ConferenceServiceImpl">
 		<property name="conference" ref="conference"></property>
 	</bean>
-		
+
+	<!-- 前置通知 -->
+	<bean id="myBeforAdvice" class="com.zut.lcy.util.MyBeforeAdvice" />
+	<!-- 后置通知 -->
+	<bean id="myAfterAdvice" class="com.zut.lcy.util.MyAfterAdvice" />
+	<!-- 环绕通知 -->
+	<bean id="myMethodInterceptor"
+		class="com.zut.lcy.util.MyMethodInterceptor" />
+	<!-- 异常通知 -->
+	<bean id="myThrowsAdvice" class="com.zut.lcy.util.MyThrowsAdvice" />
+	
+	<!-- 
+	<bean id="conferenceServiceImplProxy"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		需要代理的接口
+		<property name="interfaces"
+			value="com.zut.lcy.server.ConferenceService" />
+		接口实现类
+		<property name="target" ref="conferenceService" />
+		拦截器名称（即增强类名称）
+		<property name="interceptorNames">
+			<list>
+				<value>myBeforAdvice</value>
+				<value>myAfterAdvice</value>
+				<value>myMethodInterceptor</value>
+				<value>myThrowsAdvice</value>
+			</list>
+		</property>
+	</bean>
+	  -->
+	 
+	<!-- 注册切面 -->
+	 <bean id="myAspect" class="com.zut.lcy.util.MyAspect"></bean> 
+
+	<!-- 注册AspectJ的自动代理 -->
+ 	<aop:aspectj-autoproxy />
+
 </beans>
