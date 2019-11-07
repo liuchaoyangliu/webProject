@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zut.lcy.mapper.carMapper">
+    
+    <select id="selectCarById" resultType="com.zut.lcy.entity.Car" parameterType="int">
+		select * from car where id = #{id}
+	</select>
+    
+    <insert id="addCar" parameterType="com.zut.lcy.entity.Car">
+    	insert into car(brand, colour, displacement) values(#{brand}, #{colour}, #{displacement})
+    </insert>
+    
+    <update id="updateCar" parameterType="com.zut.lcy.entity.Car">
+    	update car set brand=#{brand}, colour=#{colour}, displacement=#{displacement} where id=#{id}
+    </update>
+    
+    <delete id="deleteCar" parameterType="int">
+    	delete from car where id=#{id}
+    </delete>
+
+</mapper>

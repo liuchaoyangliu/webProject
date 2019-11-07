@@ -2,21 +2,31 @@ package com.zut.lcy.entity;
 
 public class Car {
 
+	private int id;
+	
 	private String brand;
 	
 	private String colour;
 	
-	private float displacement ;
+	private double displacement ;
 
 	public Car() {
 		super();
 	}
 
-	public Car(String brand, String colour, float displacement) {
+	public Car(String brand, String colour, double displacement) {
 		super();
 		this.brand = brand;
 		this.colour = colour;
-		displacement = displacement;
+		this.displacement = displacement;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getBrand() {
@@ -35,17 +45,17 @@ public class Car {
 		this.colour = colour;
 	}
 
-	public float getDisplacement() {
+	public double getDisplacement() {
 		return displacement;
 	}
 
-	public void setDisplacement(float displacement) {
-		displacement = displacement;
+	public void setDisplacement(double displacement) {
+		this.displacement = displacement;
 	}
 
 	@Override
 	public String toString() {
-		return "Car [brand=" + brand + ", colour=" + colour + ", Displacement=" + displacement + "]";
+		return "Car [id=" + id + ", brand=" + brand + ", colour=" + colour + ", displacement=" + displacement + "]";
 	}
-	
+
 }
